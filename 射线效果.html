@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+<canvas width=1600  height=900   id='cas'></canvas>
+<script>
+    var cas = document.querySelector("#cas");
+    var ctx = cas.getContext("2d");
+    var arr = [];
+    var i = 0 ;
+    var step = 3;
+
+
+    function getRandomColor(){
+        return "rgb("+ parseInt(Math.random() * 255) + ","+parseInt(Math.random() * 255) + ","+parseInt(Math.random() * 255) +")";
+    }
+
+    setInterval(function () {
+        var x = parseInt(Math.random()*1500);
+        var y = parseInt(Math.random()*900);
+
+//        arr.push(x);
+//        arr.push(y);
+
+//        console.log(arr);
+//        console.log(x);
+
+//        setInterval(function (x, y) {
+//        ctx.lineWidth = parseInt(Math.random()*30);
+        ctx.lineWidth = step;
+        if(i>1800||i<0){
+            step = - step;
+        }
+        ctx.beginPath();
+        ctx.moveTo(i+700,x);
+        ctx.lineTo(i+700,y);
+        ctx.strokeStyle = getRandomColor();
+        ctx.stroke()
+        ctx.beginPath();
+        ctx.moveTo(x,i+500);
+        ctx.lineTo(y,i+500);
+        ctx.strokeStyle = getRandomColor();
+        ctx.stroke()
+//        }(x,y),17)
+
+    },17)
+    setInterval(function () {
+        ctx.clearRect(0,0,cas.width,cas.height);
+    },100)
+</script>
+</body>
+</html>
