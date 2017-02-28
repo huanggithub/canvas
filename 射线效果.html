@@ -16,44 +16,35 @@
 <script>
     var cas = document.querySelector("#cas");
     var ctx = cas.getContext("2d");
-    var arr = [];
-    var i = 0 ;
     var step = 3;
-
-
+    //随机色函数
     function getRandomColor(){
         return "rgb("+ parseInt(Math.random() * 255) + ","+parseInt(Math.random() * 255) + ","+parseInt(Math.random() * 255) +")";
     }
-
+    //绘制60帧线条
     setInterval(function () {
+        //生成x,y随机坐标数值
         var x = parseInt(Math.random()*1500);
         var y = parseInt(Math.random()*900);
-
-//        arr.push(x);
-//        arr.push(y);
-
-//        console.log(arr);
-//        console.log(x);
-
-//        setInterval(function (x, y) {
-//        ctx.lineWidth = parseInt(Math.random()*30);
+        //令划线的长度等于step
         ctx.lineWidth = step;
-        if(i>1800||i<0){
-            step = - step;
-        }
+        //每次开辟一个新路径
         ctx.beginPath();
+        //起始点
         ctx.moveTo(i+700,x);
         ctx.lineTo(i+700,y);
+        //绘制路径产生一个随机数
         ctx.strokeStyle = getRandomColor();
+        //绘制路径
         ctx.stroke()
+        //开辟一个新的路径与上部分效果一至
         ctx.beginPath();
         ctx.moveTo(x,i+500);
         ctx.lineTo(y,i+500);
         ctx.strokeStyle = getRandomColor();
         ctx.stroke()
-//        }(x,y),17)
-
     },17)
+    //每一百毫秒擦除画布
     setInterval(function () {
         ctx.clearRect(0,0,cas.width,cas.height);
     },100)
